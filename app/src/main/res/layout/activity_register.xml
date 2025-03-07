@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_alignParentTop="true"
+            android:id="@+id/llContenedor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnRegistro"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:padding="24dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/ic_logo_largo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"/>
+
+                <TextView
+                    android:text="Ingresa los siguientes datos"
+                    android:textSize="20sp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:layout_marginBottom="4dp"
+                    android:textSize="20sp"
+                    android:text="Ingresa tus nombres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:id="@+id/edNombres"
+                    android:imeOptions="actionNext"
+                    android:hint="Nombres"
+                    android:minHeight="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginBottom="4dp"
+                    android:textSize="20sp"
+                    android:text="Ingresa tus apellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:id="@+id/edApellidos"
+                    android:hint="Apellidos"
+                    android:minHeight="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginBottom="4dp"
+                    android:textSize="20sp"
+                    android:text="Ingresa tu correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:id="@+id/edCorreo"
+                    android:hint="Correo"
+                    android:minHeight="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginBottom="4dp"
+                    android:textSize="20sp"
+                    android:text="Ingresa tu contraseña"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:id="@+id/edContraseña"
+                    android:imeOptions="actionDone"
+                    android:hint="Contraseña"
+                    android:minHeight="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginBottom="4dp"
+                    android:textSize="20sp"
+                    android:text="Ingresa tu telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:inputType="number"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:id="@+id/edTelefono"
+                    android:imeOptions="actionNext"
+                    android:hint="Telefono"
+                    android:minHeight="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:textSize="18sp"
+            android:id="@+id/btnRegistro"
+            android:layout_alignParentBottom="true"
+            android:text="Registrarme"
+            android:background="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
