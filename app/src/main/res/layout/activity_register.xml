@@ -136,14 +136,26 @@
 
         </ScrollView>
 
+
         <Button
-            android:textSize="18sp"
+            android:id="@+id/btnRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_bg"
+            android:text="Regresar"
+            android:textColor="@color/white" />
+
+        <Button
             android:id="@+id/btnRegistro"
-            android:layout_alignParentBottom="true"
-            android:text="Registrarme"
-            android:background="@color/purple_700"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@color/purple_700"
+            android:text="Registrarme"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
