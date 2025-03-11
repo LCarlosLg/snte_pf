@@ -136,7 +136,7 @@
 
         </ScrollView>
 
-        <!-- Botón para regresar a la pantalla de login en caso de algun error -->
+        <!-- Botón para regresar a la pantalla de login en caso de algun error humano -->
         <Button
             android:id="@+id/btnRegresar"
             android:layout_width="wrap_content"
