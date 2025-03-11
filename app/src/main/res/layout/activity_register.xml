@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,7 +38,6 @@
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
 
                 <TextView
                     android:layout_marginBottom="4dp"
@@ -102,16 +100,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <EditText
-                    android:inputType="textPassword"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:id="@+id/edContraseña"
-                    android:imeOptions="actionDone"
-                    android:hint="Contraseña"
-                    android:minHeight="48dp"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:id="@+id/edContraseña"
+                        android:imeOptions="actionDone"
+                        android:hint="Contraseña"
+                        android:minHeight="48dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Botón para mostrar/ocultar contraseña -->
+                    <ImageView
+                        android:id="@+id/ivShowPassword"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_eye"
+                        android:textColor="@color/primary_text"
+                        android:layout_marginEnd="8dp"/>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_marginBottom="4dp"
@@ -130,7 +144,6 @@
                     android:minHeight="48dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
 
             </LinearLayout>
 

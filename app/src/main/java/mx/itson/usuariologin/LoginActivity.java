@@ -3,6 +3,7 @@ package mx.itson.usuariologin;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView tvRegistro;
     private ImageView imgLogo;
+    private ImageView ivShowPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,15 @@ public class LoginActivity extends AppCompatActivity {
         btnIniciar = findViewById(R.id.btnIniciar);
         tvRegistro = findViewById(R.id.tvRegistro);
         imgLogo = findViewById(R.id.imgLogo);
+        ivShowPassword = findViewById(R.id.ivShowPassword);
+
+        // Mostrar/Ocultar contraseña
+        ivShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibility();
+            }
+        });
 
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +78,21 @@ public class LoginActivity extends AppCompatActivity {
         Picasso.get()
                 .load("https://www.itson.mx/micrositios/identidad/PublishingImages/potros-itson.jpg")
                 .into(imgLogo);
+    }
+
+    private void togglePasswordVisibility() {
+        if (edContrasenia.getInputType() == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+            // Cambiar el tipo de input a texto normal (mostrar contraseña)
+            edContrasenia.setInputType(InputType.TYPE_CLASS_TEXT);
+            ivShowPassword.setImageResource(R.drawable.ic_eye); // Cambiar el ícono a "ojo abierto"
+        } else {
+            // Cambiar el tipo de input a texto de contraseña (ocultar contraseña)
+            edContrasenia.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            ivShowPassword.setImageResource(R.drawable.ic_eye_off); // Cambiar el ícono a "ojo cerrado"
+        }
+
+        // Restablecer el cursor al final del texto
+        edContrasenia.setSelection(edContrasenia.getText().length());
     }
 
     @Override
@@ -113,6 +139,5 @@ public class LoginActivity extends AppCompatActivity {
             String saludo = data.getStringExtra("VARIABLE_REGRESO");
             Toast.makeText(LoginActivity.this, saludo, Toast.LENGTH_LONG).show();
         }
-
     }
 }

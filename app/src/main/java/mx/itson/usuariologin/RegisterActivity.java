@@ -6,12 +6,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private EditText edContraseña;
+    private ImageView ivShowPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +66,33 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Inicializar los elementos para la contraseña
+        edContraseña = findViewById(R.id.edContraseña);
+        ivShowPassword = findViewById(R.id.ivShowPassword);
+
+        // Agregar el listener para el ícono de mostrar/ocultar la contraseña
+        ivShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Alternar entre mostrar/ocultar la contraseña
+                if (edContraseña.getTransformationMethod().equals(android.text.method.PasswordTransformationMethod.getInstance())) {
+                    // Si está oculta, mostrar la contraseña
+                    edContraseña.setTransformationMethod(null);
+                    ivShowPassword.setImageResource(R.drawable.ic_eye_off);  // Cambiar el ícono a "ojo cerrado"
+                } else {
+                    // Si está visible, ocultar la contraseña
+                    edContraseña.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+                    ivShowPassword.setImageResource(R.drawable.ic_eye);  // Cambiar el ícono a "ojo abierto"
+                }
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Comportamiento al presionar el botón de retroceso en la barra de acción
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish(); // Cierra RegisterActivity cuando se presiona el botón de retroceso
         }
         return super.onOptionsItemSelected(item);
