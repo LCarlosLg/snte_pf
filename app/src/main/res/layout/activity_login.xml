@@ -87,12 +87,12 @@
             <!-- Icono para mostrar/ocultar contraseña -->
             <ImageView
                 android:id="@+id/ivShowPassword"
-                android:src="@drawable/ic_eye"
+                android:src="@drawable/ic_eye_off"
                 android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/primary_text"/>
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/primary_text"/>
         </LinearLayout>
 
         <!-- Botón para iniciar sesión -->
@@ -129,5 +129,6 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>
+
 
 

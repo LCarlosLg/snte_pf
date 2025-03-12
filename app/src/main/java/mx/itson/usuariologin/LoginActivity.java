@@ -40,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         imgLogo = findViewById(R.id.imgLogo);
         ivShowPassword = findViewById(R.id.ivShowPassword);
 
+        // Inicializar el ícono del ojo cerrado al principio
+        ivShowPassword.setImageResource(R.drawable.ic_eye_off);
+
         // Mostrar/Ocultar contraseña
         ivShowPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,25 +76,25 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.d("CicloVida", "onCreate");
 
-        //https://sic.cultura.gob.mx/images/62898
-        //https://www.itson.mx/micrositios/identidad/PublishingImages/potros-itson.jpg
+        // Cargar la imagen con Picasso
         Picasso.get()
                 .load("https://www.itson.mx/micrositios/identidad/PublishingImages/potros-itson.jpg")
                 .into(imgLogo);
     }
 
     private void togglePasswordVisibility() {
+        // Cambiar entre ver/ocultar contraseña
         if (edContrasenia.getInputType() == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            // Cambiar el tipo de input a texto normal (mostrar contraseña)
+            // Mostrar la contraseña
             edContrasenia.setInputType(InputType.TYPE_CLASS_TEXT);
-            ivShowPassword.setImageResource(R.drawable.ic_eye); // Cambiar el ícono a "ojo abierto"
+            ivShowPassword.setImageResource(R.drawable.ic_eye); // Cambiar a "ojo abierto"
         } else {
-            // Cambiar el tipo de input a texto de contraseña (ocultar contraseña)
+            // Ocultar la contraseña
             edContrasenia.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            ivShowPassword.setImageResource(R.drawable.ic_eye_off); // Cambiar el ícono a "ojo cerrado"
+            ivShowPassword.setImageResource(R.drawable.ic_eye_off); // Cambiar a "ojo cerrado"
         }
 
-        // Restablecer el cursor al final del texto
+        // Restablecer el cursor al final del texto para que no se mueva al cambiar el tipo de input
         edContrasenia.setSelection(edContrasenia.getText().length());
     }
 
@@ -135,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 777 & resultCode == RESULT_OK) {
+        if(requestCode == 777 && resultCode == RESULT_OK) {
             String saludo = data.getStringExtra("VARIABLE_REGRESO");
             Toast.makeText(LoginActivity.this, saludo, Toast.LENGTH_LONG).show();
         }
