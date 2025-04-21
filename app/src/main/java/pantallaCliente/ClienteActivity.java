@@ -26,6 +26,7 @@ public class ClienteActivity extends Activity {
         productosmodel.add(new ProductoModel(3, "Silla", 999.99, 20, "Mueblería"));
         productosmodel.add(new ProductoModel(4, "Microondas", 2499.50, 10, "Electrodomésticos"));
         productosmodel.add(new ProductoModel(4, "Base de cama", 8900.50, 12, "Muebleria"));
+        productosmodel.add(new ProductoModel(4, "Freidora de aire", 3450.50, 40, "Electrodomésticos"));
 
         ProductoAdapter adapter = new ProductoAdapter(this, productosmodel);
         lvProductos.setAdapter(adapter);
