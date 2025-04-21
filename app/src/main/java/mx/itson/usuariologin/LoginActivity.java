@@ -1,146 +1,86 @@
 package mx.itson.usuariologin;
 
+
+
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
+import android.widget.*;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.squareup.picasso.Picasso;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etCorreo;
-    private EditText edContrasenia;
-    private Button btnIniciar;
-
-    private TextView tvRegistro;
-    private ImageView imgLogo;
+    private EditText etCorreo, etContraseña;
     private ImageView ivShowPassword;
+    private CheckBox cbEmpleado, cbCliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
 
-        etCorreo = findViewById(R.id.etCorreo);
-        edContrasenia = findViewById(R.id.edContrasenia);
-        btnIniciar = findViewById(R.id.btnIniciar);
-        tvRegistro = findViewById(R.id.tvRegistro);
-        imgLogo = findViewById(R.id.imgLogo);
-        ivShowPassword = findViewById(R.id.ivShowPassword);
+        setTitle("Iniciar sesión");
+        getSupportActionBar().setTitle("Iniciar sesión");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Inicializar el ícono del ojo cerrado al principio
+        // Inicializar elementos de la UI
+        etCorreo = findViewById(R.id.etCorreo);
+        etContraseña = findViewById(R.id.edContrasenia);
+        ivShowPassword = findViewById(R.id.ivShowPassword);
+        Button btnIniciar = findViewById(R.id.btnIniciar);
+        Button btnRegistrar = findViewById(R.id.tvRegistro);
+        cbEmpleado = findViewById(R.id.cbEmpleado);
+        cbCliente = findViewById(R.id.cbCliente);
+
         ivShowPassword.setImageResource(R.drawable.ic_eye_off);
 
-        // Mostrar/Ocultar contraseña
-        ivShowPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                togglePasswordVisibility();
+        ivShowPassword.setOnClickListener(view -> {
+            if (etContraseña.getTransformationMethod().equals(android.text.method.PasswordTransformationMethod.getInstance())) {
+                etContraseña.setTransformationMethod(null);
+                ivShowPassword.setImageResource(R.drawable.ic_eye);
+            } else {
+                etContraseña.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+                ivShowPassword.setImageResource(R.drawable.ic_eye_off);
             }
         });
 
-        btnIniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String correo = etCorreo.getText().toString();
-                String saludo = "Hola " + correo;
-                Toast.makeText(LoginActivity.this, saludo, Toast.LENGTH_LONG).show();
+        btnIniciar.setOnClickListener(view -> {
+            String correo = etCorreo.getText().toString();
+            String contrasena = etContraseña.getText().toString();
+            boolean isEmpleado = cbEmpleado.isChecked();
+            boolean isCliente = cbCliente.isChecked();
 
-                Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
-                intent.putExtra("CORREO", correo);
-                //startActivity(intent);
-                startActivityForResult(intent, 777);
+            if (correo.isEmpty() || contrasena.isEmpty() || (!isEmpleado && !isCliente)) {
+                Toast.makeText(LoginActivity.this, "Por favor complete todos los campos y seleccione un rol.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+
+                if (isCliente) {
+                    Intent intent = new Intent(LoginActivity.this, pantallaCliente.ClienteActivity.class);
+                    startActivity(intent);
+                } else if (isEmpleado) {
+                    Intent intent = new Intent(LoginActivity.this, pantallaEmpleado.EmpleadoActivity.class);
+                    startActivity(intent);
+                }
+
+                finish();
             }
         });
 
-        tvRegistro.setPaintFlags(tvRegistro.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        tvRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        btnRegistrar.setOnClickListener(view -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            finish();
         });
-
-        Log.d("CicloVida", "onCreate");
-
-        // Cargar la imagen con Picasso
-        Picasso.get()
-                .load("https://www.itson.mx/micrositios/identidad/PublishingImages/potros-itson.jpg")
-                .into(imgLogo);
     }
 
-    private void togglePasswordVisibility() {
-        // Cambiar entre ver/ocultar contraseña
-        if (edContrasenia.getInputType() == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            // Mostrar la contraseña
-            edContrasenia.setInputType(InputType.TYPE_CLASS_TEXT);
-            ivShowPassword.setImageResource(R.drawable.ic_eye); // Cambiar a "ojo abierto"
-        } else {
-            // Ocultar la contraseña
-            edContrasenia.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            ivShowPassword.setImageResource(R.drawable.ic_eye_off); // Cambiar a "ojo cerrado"
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
-
-        // Restablecer el cursor al final del texto para que no se mueva al cambiar el tipo de input
-        edContrasenia.setSelection(edContrasenia.getText().length());
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("CicloVida", "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("CicloVida", "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("CicloVida", "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("CicloVida", "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("CicloVida", "onDestroy");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("CicloVida", "onRestart");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 777 && resultCode == RESULT_OK) {
-            String saludo = data.getStringExtra("VARIABLE_REGRESO");
-            Toast.makeText(LoginActivity.this, saludo, Toast.LENGTH_LONG).show();
-        }
+        return super.onOptionsItemSelected(item);
     }
 }
+

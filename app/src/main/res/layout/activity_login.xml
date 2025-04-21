@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/background"
-    tools:context=".LoginActivity">
+    android:background="@color/background">
 
     <!-- Contenedor principal centrado -->
     <LinearLayout
@@ -39,16 +35,6 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-        <!-- Subtítulo -->
-        <TextView
-            android:text="Inicia sesión para continuar"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_text"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
 
         <!-- Campo de correo -->
         <EditText
@@ -89,10 +75,32 @@
                 android:id="@+id/ivShowPassword"
                 android:src="@drawable/ic_eye_off"
                 android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/primary_text"/>
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/primary_text"/>
+        </LinearLayout>
+
+        <!-- Checkboxes para seleccionar el rol -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/cbEmpleado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empleado"
+                android:layout_marginEnd="16dp"/>
+
+            <CheckBox
+                android:id="@+id/cbCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente"/>
+
         </LinearLayout>
 
         <!-- Botón para iniciar sesión -->
@@ -104,7 +112,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/button_bg"/>
+            android:background="@color/orange"/>
 
         <!-- Texto para redirección al registro -->
         <TextView
@@ -129,6 +137,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>
+
 
 
 
