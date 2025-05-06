@@ -1,15 +1,16 @@
 package pantallaCliente;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import mx.itson.usuariologin.R;
 
-public class ClienteActivity extends Activity {
+public class ClienteActivity extends AppCompatActivity {
 
     private ListView lvProductos;
 
@@ -26,8 +27,8 @@ public class ClienteActivity extends Activity {
         productosmodel.add(new ProductoModel(3, "Silla", 999.99, 20, "Mueblería"));
         productosmodel.add(new ProductoModel(4, "Microondas", 2499.50, 10, "Electrodomésticos"));
 
-
         ProductoAdapter adapter = new ProductoAdapter(this, productosmodel);
         lvProductos.setAdapter(adapter);
     }
 }
+

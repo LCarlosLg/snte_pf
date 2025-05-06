@@ -15,32 +15,43 @@
             android:hint="ID"
             android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
 
         <EditText
             android:id="@+id/etNombre"
             android:hint="Nombre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
 
         <EditText
             android:id="@+id/etPrecio"
             android:hint="Precio"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
 
         <EditText
             android:id="@+id/etStock"
             android:hint="Stock"
             android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
 
-        <EditText android:id="@+id/etCategoria"
+        <EditText
+            android:id="@+id/etCategoria"
             android:hint="Categoría"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
 
         <LinearLayout
             android:orientation="horizontal"

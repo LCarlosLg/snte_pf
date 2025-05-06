@@ -18,15 +18,11 @@
         <activity
             android:name="pantallaEmpleado.EmpleadoActivity"
             android:exported="false" />
-        <activity
-            android:name="pantallaCliente.ProductoActivity"
-            android:exported="false" />
+
         <activity
             android:name="pantallaCliente.ClienteActivity"
             android:exported="false" />
-        <activity
-            android:name=".ClienteActivity"
-            android:exported="false" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />

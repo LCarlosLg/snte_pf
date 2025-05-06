@@ -1,6 +1,5 @@
 package pantallaCliente;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,8 @@ import mx.itson.usuariologin.R;
 
 public class ProductoAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<ProductoModel> productos;
+    private final Context context;
+    private final List<ProductoModel> productos;
 
     public ProductoAdapter(Context context, List<ProductoModel> productos) {
         this.context = context;
@@ -28,30 +27,48 @@ public class ProductoAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return productos.get(i);
+    public Object getItem(int position) {
+        return productos.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return productos.get(i).id;
+    public long getItemId(int position) {
+        return productos.get(position).id;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup parent) {
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        ProductoModel p = productos.get(i);
+        ProductoModel producto = productos.get(position);
 
-        ((TextView) view.findViewById(R.id.tvNombre)).setText(p.nombre);
-        ((TextView) view.findViewById(R.id.tvPrecio)).setText("Precio: $" + p.precio);
-        ((TextView) view.findViewById(R.id.tvStock)).setText("Stock: " + p.stock);
-        ((TextView) view.findViewById(R.id.tvCategoria)).setText("Categoría: " + p.categoria);
+        holder.tvNombre.setText(producto.nombre);
+        holder.tvPrecio.setText(String.format("Precio: $%.2f", producto.precio));
+        holder.tvStock.setText("Stock: " + producto.stock);
+        holder.tvCategoria.setText("Categoría: " + producto.categoria);
 
-        return view;
+        return convertView;
+    }
+
+    static class ViewHolder {
+        TextView tvNombre, tvPrecio, tvStock, tvCategoria;
+
+        ViewHolder(View view) {
+            tvNombre = view.findViewById(R.id.tvNombre);
+            tvPrecio = view.findViewById(R.id.tvPrecio);
+            tvStock = view.findViewById(R.id.tvStock);
+            tvCategoria = view.findViewById(R.id.tvCategoria);
+        }
     }
 }
+
 
 

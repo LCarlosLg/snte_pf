@@ -1,7 +1,5 @@
 package mx.itson.usuariologin;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etCorreo, etContraseña;
     private ImageView ivShowPassword;
     private CheckBox cbEmpleado, cbCliente;
+    private TextView btnRegistrar; // ← CAMBIO AQUÍ
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +24,11 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Iniciar sesión");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Inicializar elementos de la UI
         etCorreo = findViewById(R.id.etCorreo);
         etContraseña = findViewById(R.id.edContrasenia);
         ivShowPassword = findViewById(R.id.ivShowPassword);
         Button btnIniciar = findViewById(R.id.btnIniciar);
-        Button btnRegistrar = findViewById(R.id.tvRegistro);
+        btnRegistrar = findViewById(R.id.tvRegistro); // ← CAMBIO AQUÍ
         cbEmpleado = findViewById(R.id.cbEmpleado);
         cbCliente = findViewById(R.id.cbCliente);
 
@@ -83,4 +81,3 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
