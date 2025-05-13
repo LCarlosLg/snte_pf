@@ -1,4 +1,3 @@
 <resources>
-
-
+    <string name="show_hide_password">Mostrar/Ocultar contraseña</string>
 </resources>

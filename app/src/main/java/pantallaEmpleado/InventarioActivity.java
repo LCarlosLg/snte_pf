@@ -1,10 +1,10 @@
 package pantallaEmpleado;
 
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 import mx.itson.usuariologin.R;
 import pantallaCliente.ProductoModel;
 
-public class InventarioActivity extends Activity {
+public class InventarioActivity extends AppCompatActivity {
 
     private EditText etId, etNombre, etPrecio, etStock, etCategoria;
     private Button btnAgregar, btnActualizar, btnEliminar;
@@ -27,6 +27,14 @@ public class InventarioActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventario);
 
+        // Configurar Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        // Inicializar vistas
         etId = findViewById(R.id.etId);
         etNombre = findViewById(R.id.etNombre);
         etPrecio = findViewById(R.id.etPrecio);
