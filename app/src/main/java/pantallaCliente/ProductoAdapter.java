@@ -4,71 +4,69 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import mx.itson.usuariologin.R;
 
-public class ProductoAdapter extends BaseAdapter {
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
 
-    private final Context context;
     private final List<ProductoModel> productos;
+    private final Context context;
+    private final OnAgregarClickListener listener;
 
-    public ProductoAdapter(Context context, List<ProductoModel> productos) {
+    // Interfaz para manejar clics en el botón "Agregar al carrito"
+    public interface OnAgregarClickListener {
+        void onAgregarClick(ProductoModel producto);
+    }
+
+    public ProductoAdapter(Context context, List<ProductoModel> productos, OnAgregarClickListener listener) {
         this.context = context;
         this.productos = productos;
+        this.listener = listener;
     }
 
-    @Override
-    public int getCount() {
-        return productos.size();
-    }
+    // ViewHolder que representa cada ítem del RecyclerView
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvNombre, tvDescripcion;
+        Button btnAgregar;
 
-    @Override
-    public Object getItem(int position) {
-        return productos.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return productos.get(position).id;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvNombre = itemView.findViewById(R.id.tvNombreProducto);
+            tvDescripcion = itemView.findViewById(R.id.tvDescripcionProducto);
+            btnAgregar = itemView.findViewById(R.id.btnAgregarCarrito);
         }
+    }
 
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductoModel producto = productos.get(position);
 
         holder.tvNombre.setText(producto.nombre);
-        holder.tvPrecio.setText(String.format("Precio: $%.2f", producto.precio));
-        holder.tvStock.setText("Stock: " + producto.stock);
-        holder.tvCategoria.setText("Categoría: " + producto.categoria);
+        holder.tvDescripcion.setText("Precio: $" + producto.precio + " | Stock: " + producto.stock);
 
-        return convertView;
+        holder.btnAgregar.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAgregarClick(producto);
+            }
+        });
     }
 
-    static class ViewHolder {
-        TextView tvNombre, tvPrecio, tvStock, tvCategoria;
-
-        ViewHolder(View view) {
-            tvNombre = view.findViewById(R.id.tvNombre);
-            tvPrecio = view.findViewById(R.id.tvPrecio);
-            tvStock = view.findViewById(R.id.tvStock);
-            tvCategoria = view.findViewById(R.id.tvCategoria);
-        }
+    @Override
+    public int getItemCount() {
+        return productos.size();
     }
 }
-
-
-

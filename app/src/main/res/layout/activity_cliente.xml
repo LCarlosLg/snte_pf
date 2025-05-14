@@ -5,28 +5,68 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pantallaCliente.ClienteActivity">
+    android:background="@color/naranjaFondo"
+    android:padding="16dp"
+    tools:context=".pantallaCliente.ClienteActivity">
 
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Productos disponibles"
+        android:textColor="@color/naranjaPrimario"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintBottom_toTopOf="@id/llBotonesCarrito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Controles del carrito -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/naranjaFondo"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:id="@+id/llBotonesCarrito"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnEliminarItem"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Productos disponibles"
-            android:textColor="@color/naranjaPrimario"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:text="Eliminar último"
+            android:backgroundTint="@color/naranjaOscuro"
+            android:textColor="@android:color/white" />
 
-        <ListView
-            android:id="@+id/lvProductos"
-            android:layout_width="match_parent"
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnVaciarCarrito"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:divider="@color/naranjaPrimario"
-            android:dividerHeight="1dp" />
+            android:layout_weight="1"
+            android:text="Vaciar carrito"
+            android:backgroundTint="@color/naranjaOscuro"
+            android:textColor="@android:color/white" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,11 +11,15 @@
     <color name="black">#000000</color>
     <color name="purple_200">#BB86FC</color>
     <color name="orange">#BF360C</color> <!-- más oscuro -->
-
     <color name="naranjaFondo">#FFF3E0</color>
     <color name="naranjaPrimario">#FF9800</color>
     <color name="naranjaOscuro">#F57C00</color>
     <color name="blanco">#FFFFFF</color>
     <color name="negro">#000000</color>
+
+    <!-- colores agregados 13/05/25 -->
+    <color name="red">#F44336</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="brown">#795548</color>
 
 </resources>
