@@ -1,4 +1,4 @@
-package pantallaCliente;
+package mx.itson.usuariologin.pantallaCliente;
 
 import android.content.Context;
 import android.view.LayoutInflater;

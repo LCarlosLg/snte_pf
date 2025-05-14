@@ -1,4 +1,4 @@
-package pantallaCliente;
+package mx.itson.usuariologin.pantallaCliente;
 
 
 public class ProductoModel {

@@ -1,70 +1,73 @@
-package mx.itson.usuariologin;
+package mx.itson.usuariologin.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import pantallaCliente.ClienteActivity;
-import pantallaEmpleado.EmpleadoActivity;
+import mx.itson.usuariologin.R;
+import mx.itson.usuariologin.pantallaCliente.ClienteActivity;
+import mx.itson.usuariologin.pantallaEmpleado.EmpleadoActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etCorreo, edContrasenia;
     private CheckBox cbEmpleado, cbCliente;
-    private Button btnIniciar;
-    private TextView tvRegistro;  // Cambié el tipo a TextView
+    private Button btnIniciar, btnGestionarUsuarios;
+    private TextView tvRegistro;
+    private ImageButton btnMostrarContraseña;
+
+    private boolean mostrarContrasenia = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Asignación de los elementos de la interfaz
         etCorreo = findViewById(R.id.etCorreo);
         edContrasenia = findViewById(R.id.edContrasenia);
         cbEmpleado = findViewById(R.id.cbEmpleado);
         cbCliente = findViewById(R.id.cbCliente);
-
         btnIniciar = findViewById(R.id.btnIniciar);
-        tvRegistro = findViewById(R.id.tvRegistro);  // Actualicé la referencia
+        tvRegistro = findViewById(R.id.tvRegistro);
+        btnMostrarContraseña = findViewById(R.id.btnMostrarContraseña);
 
-        // Evento para el botón de inicio de sesión
+        btnMostrarContraseña.setImageResource(R.drawable.ic_eye_off);
+
+        btnMostrarContraseña.setOnClickListener(v -> {
+            if (mostrarContrasenia) {
+                edContrasenia.setInputType(129);
+                btnMostrarContraseña.setImageResource(R.drawable.ic_eye_off);
+            } else {
+                edContrasenia.setInputType(1);
+                btnMostrarContraseña.setImageResource(R.drawable.ic_eye);
+            }
+            mostrarContrasenia = !mostrarContrasenia;
+        });
+
         btnIniciar.setOnClickListener(v -> {
             String correo = etCorreo.getText().toString().trim();
             String contrasena = edContrasenia.getText().toString().trim();
 
-            // Validación de los campos
             if (correo.isEmpty() || contrasena.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Por favor complete los campos.", Toast.LENGTH_SHORT).show();
             } else {
-                // Aquí podrías añadir lógica de autenticación (como verificar las credenciales en una base de datos)
-
-                // Simulación de inicio de sesión exitoso
+                // Verificar usuario (ejemplo, implementar validación en la base de datos)
                 if (cbEmpleado.isChecked()) {
-                    Toast.makeText(LoginActivity.this, "Bienvenido, empleado.", Toast.LENGTH_SHORT).show();
-                    // Redirigir a la pantalla de empleado
                     startActivity(new Intent(LoginActivity.this, EmpleadoActivity.class));
                 } else if (cbCliente.isChecked()) {
-                    Toast.makeText(LoginActivity.this, "Bienvenido, cliente.", Toast.LENGTH_SHORT).show();
-                    // Redirigir a la pantalla de cliente
                     startActivity(new Intent(LoginActivity.this, ClienteActivity.class));
-                } else {
-                    Toast.makeText(LoginActivity.this, "Por favor, seleccione un rol.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        // Evento para el TextView "Regístrate aquí"
-        tvRegistro.setOnClickListener(v -> {
-            // Redirigir a la actividad de registro
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-        });
+
+        tvRegistro.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
     }
 }

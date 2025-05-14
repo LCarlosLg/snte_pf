@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="mx.itson.usuariologin">
@@ -10,16 +11,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".pantallaEmpleado.RegistroUsuariosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pantallaEmpleado.InventarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pantallaEmpleado.EmpleadoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pantallaCliente.ClienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true">
 
-        <activity android:name="pantallaEmpleado.InventarioActivity" android:exported="false"/>
-        <activity android:name="pantallaEmpleado.EmpleadoActivity" android:exported="false"/>
-        <activity android:name="pantallaCliente.ClienteActivity" android:exported="false"/>
-        <activity android:name=".RegisterActivity" android:exported="false"/>
-        <activity android:name=".LoginActivity" android:exported="true">
+
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

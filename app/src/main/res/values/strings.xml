@@ -1,3 +1,20 @@
 <resources>
-    <string name="show_hide_password">Mostrar/Ocultar contraseña</string>
+    <!-- Accesibilidad -->
+    <string name="show_hide_password">Mostrar u ocultar contraseña</string>
+    <string name="logo_empresa">Logo de Mueblería SNTE</string>
+
+    <!-- App -->
+    <string name="app_name">Mueblería SNTE</string>
+    <string name="bienvenido">Bienvenido a Mueblería SNTE</string>
+
+    <!-- Formulario -->
+    <string name="correo_hint">Correo electrónico</string>
+    <string name="contrasena_hint">Contraseña</string>
+    <string name="empleado">Empleado</string>
+    <string name="cliente">Cliente</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+
+    <!-- Registro -->
+    <string name="no_tienes_cuenta">¿No tienes cuenta?</string>
+    <string name="registrate_aqui">Regístrate aquí</string>
 </resources>

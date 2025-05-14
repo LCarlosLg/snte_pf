@@ -1,4 +1,4 @@
-package pantallaCliente;
+package mx.itson.usuariologin.pantallaCliente;
 
 import android.os.Bundle;
 import android.widget.Button;

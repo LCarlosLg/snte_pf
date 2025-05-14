@@ -1,4 +1,4 @@
-package pantallaEmpleado;
+package mx.itson.usuariologin.pantallaEmpleado;
 
 
 import android.app.Activity;
@@ -22,6 +22,11 @@ public class EmpleadoActivity extends Activity {
         btnInventario.setOnClickListener(v -> {
             Intent intent = new Intent(EmpleadoActivity.this, InventarioActivity.class);
             startActivity(intent);
+
+
+
         });
+
+
     }
 }

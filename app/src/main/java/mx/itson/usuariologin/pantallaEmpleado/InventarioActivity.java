@@ -1,4 +1,4 @@
-package pantallaEmpleado;
+package mx.itson.usuariologin.pantallaEmpleado;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.itson.usuariologin.R;
-import pantallaCliente.ProductoModel;
+import mx.itson.usuariologin.pantallaCliente.ProductoModel;
+
 
 public class InventarioActivity extends AppCompatActivity {
 
