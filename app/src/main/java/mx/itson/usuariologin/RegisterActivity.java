@@ -1,7 +1,6 @@
 package mx.itson.usuariologin;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,35 +17,27 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Asignación de los elementos de la interfaz
         edNombres = findViewById(R.id.edNombres);
         edApellidos = findViewById(R.id.edApellidos);
         edCorreo = findViewById(R.id.edCorreo);
         edContraseña = findViewById(R.id.edContraseña);
         edTelefono = findViewById(R.id.edTelefono);
-
         btnRegistro = findViewById(R.id.btnRegistro);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // Evento para el botón de registro
         btnRegistro.setOnClickListener(v -> {
-            String nombres = edNombres.getText().toString().trim();
-            String apellidos = edApellidos.getText().toString().trim();
-            String correo = edCorreo.getText().toString().trim();
-            String contrasena = edContraseña.getText().toString().trim();
-            String telefono = edTelefono.getText().toString().trim();
-
-            // Validación de los campos
-            if (nombres.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || contrasena.isEmpty() || telefono.isEmpty()) {
-                Toast.makeText(RegisterActivity.this, "Por favor complete todos los campos.", Toast.LENGTH_SHORT).show();
+            if (edNombres.getText().toString().trim().isEmpty()
+                    || edApellidos.getText().toString().trim().isEmpty()
+                    || edCorreo.getText().toString().trim().isEmpty()
+                    || edContraseña.getText().toString().trim().isEmpty()
+                    || edTelefono.getText().toString().trim().isEmpty()) {
+                Toast.makeText(this, "Por favor complete todos los campos.", Toast.LENGTH_SHORT).show();
             } else {
-                // Simulación de registro exitoso
-                Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                finish();  // Cerrar la actividad actual
+                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
-        // Evento para el botón de regresar
-        btnRegresar.setOnClickListener(v -> finish());  // Regresar a la actividad anterior
+        btnRegresar.setOnClickListener(v -> finish());
     }
 }
