@@ -2,82 +2,61 @@ package mx.itson.usuariologin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import pantallaCliente.ClienteActivity;
+import pantallaEmpleado.EmpleadoActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etCorreo, etContraseña;
-    private ImageView ivShowPassword;
+    private EditText etCorreo, edContrasenia;
     private CheckBox cbEmpleado, cbCliente;
-    private TextView btnRegistrar; // ← CAMBIO AQUÍ
+    private Button btnIniciar;
+    private TextView tvRegistro; // Cambiado de Button a TextView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        setTitle("Iniciar sesión");
-        getSupportActionBar().setTitle("Iniciar sesión");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        // Asignación de los elementos de la interfaz
         etCorreo = findViewById(R.id.etCorreo);
-        etContraseña = findViewById(R.id.edContrasenia);
-        ivShowPassword = findViewById(R.id.ivShowPassword);
-        Button btnIniciar = findViewById(R.id.btnIniciar);
-        btnRegistrar = findViewById(R.id.tvRegistro); // ← CAMBIO AQUÍ
+        edContrasenia = findViewById(R.id.edContrasenia);
         cbEmpleado = findViewById(R.id.cbEmpleado);
         cbCliente = findViewById(R.id.cbCliente);
 
-        ivShowPassword.setImageResource(R.drawable.ic_eye_off);
+        btnIniciar = findViewById(R.id.btnIniciar);
+        tvRegistro = findViewById(R.id.tvRegistro); // Correcto ahora
 
-        ivShowPassword.setOnClickListener(view -> {
-            if (etContraseña.getTransformationMethod().equals(android.text.method.PasswordTransformationMethod.getInstance())) {
-                etContraseña.setTransformationMethod(null);
-                ivShowPassword.setImageResource(R.drawable.ic_eye);
+        // Evento para el botón de inicio de sesión
+        btnIniciar.setOnClickListener(v -> {
+            String correo = etCorreo.getText().toString().trim();
+            String contrasena = edContrasenia.getText().toString().trim();
+
+            if (correo.isEmpty() || contrasena.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Por favor complete los campos.", Toast.LENGTH_SHORT).show();
             } else {
-                etContraseña.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
-                ivShowPassword.setImageResource(R.drawable.ic_eye_off);
-            }
-        });
-
-        btnIniciar.setOnClickListener(view -> {
-            String correo = etCorreo.getText().toString();
-            String contrasena = etContraseña.getText().toString();
-            boolean isEmpleado = cbEmpleado.isChecked();
-            boolean isCliente = cbCliente.isChecked();
-
-            if (correo.isEmpty() || contrasena.isEmpty() || (!isEmpleado && !isCliente)) {
-                Toast.makeText(LoginActivity.this, "Por favor complete todos los campos y seleccione un rol.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
-                if (isCliente) {
-                    Intent intent = new Intent(LoginActivity.this, pantallaCliente.ClienteActivity.class);
-                    startActivity(intent);
-                } else if (isEmpleado) {
-                    Intent intent = new Intent(LoginActivity.this, pantallaEmpleado.EmpleadoActivity.class);
-                    startActivity(intent);
+                if (cbEmpleado.isChecked()) {
+                    Toast.makeText(LoginActivity.this, "Bienvenido, empleado.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, EmpleadoActivity.class));
+                } else if (cbCliente.isChecked()) {
+                    Toast.makeText(LoginActivity.this, "Bienvenido, cliente.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, ClienteActivity.class));
+                } else {
+                    Toast.makeText(LoginActivity.this, "Por favor, seleccione un rol.", Toast.LENGTH_SHORT).show();
                 }
-
-                finish();
             }
         });
 
-        btnRegistrar.setOnClickListener(view -> {
+        // Evento para el texto "Regístrate aquí"
+        tvRegistro.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            finish();
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
