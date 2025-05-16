@@ -33,5 +33,13 @@
         android:textColor="@color/blanco"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"
+        android:backgroundTint="@color/naranjaPrimario"
+        android:textColor="@color/blanco"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

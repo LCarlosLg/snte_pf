@@ -2,9 +2,11 @@ package mx.itson.usuariologin.pantallaEmpleado;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -39,7 +41,7 @@ public class EmpleadoActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 100;
     private ApiService apiService;
-    private Button btnGenerarReporte, btnInventario;
+    private Button btnGenerarReporte, btnInventario, btnCerrarSesion;
     private List<ProductoModel> productosParaReporte;
 
     @Override
@@ -49,6 +51,7 @@ public class EmpleadoActivity extends AppCompatActivity {
 
         btnGenerarReporte = findViewById(R.id.btnGenerarReporte);
         btnInventario = findViewById(R.id.btnInventario);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://snte.store/") // Cambia por tu URL base
@@ -79,6 +82,20 @@ public class EmpleadoActivity extends AppCompatActivity {
         btnInventario.setOnClickListener(v -> {
             Intent intent = new Intent(EmpleadoActivity.this, InventarioActivity.class);
             startActivity(intent);
+        });
+
+        btnCerrarSesion.setOnClickListener(v -> {
+            // Limpiar SharedPreferences para cerrar sesión
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.clear();
+            editor.apply();
+
+            // Volver a LoginActivity y limpiar stack
+            Intent intent = new Intent(EmpleadoActivity.this, mx.itson.usuariologin.login.LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -142,9 +159,9 @@ public class EmpleadoActivity extends AppCompatActivity {
                 row.createCell(4).setCellValue(p.getCategoria());
             }
 
-            // Ajustar columnas con ancho fijo (evitar uso de autoSizeColumn para evitar error en Android)
+            // Ajustar columnas con ancho fijo
             for (int i = 0; i < headers.length; i++) {
-                sheet.setColumnWidth(i, 5000); // ancho fijo, ajusta según prefieras
+                sheet.setColumnWidth(i, 5000);
             }
 
             // Convertir workbook a bytes para subir
