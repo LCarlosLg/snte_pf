@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Toolbar de la parte superior -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,114 +16,112 @@
         app:title="Inventario"
         app:titleTextColor="@color/blanco" />
 
-    <!-- Contenido scrollable -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true">
 
-        <FrameLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:hint="Nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:paddingVertical="12dp" />
+
+            <EditText
+                android:id="@+id/etPrecio"
+                android:hint="Precio"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:paddingVertical="12dp" />
+
+            <EditText
+                android:id="@+id/etStock"
+                android:hint="Stock"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:paddingVertical="12dp" />
+
+            <EditText
+                android:id="@+id/etCategoria"
+                android:hint="Categoría"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:paddingVertical="12dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="center_horizontal">
 
-                <!-- Ya no necesitas botón de regreso, lo maneja el Toolbar -->
-                <EditText
-                    android:id="@+id/etId"
-                    android:hint="ID"
-                    android:inputType="number"
+                <Button
+                    android:id="@+id/btnAgregar"
+                    android:text=" Agregar"
+                    android:drawableStart="@drawable/ic_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:paddingVertical="12dp" />
+                    android:backgroundTint="@color/naranjaPrimario"
+                    android:textColor="@color/blanco"
+                    android:layout_marginBottom="8dp"
+                    android:paddingHorizontal="12dp" />
 
-                <EditText
-                    android:id="@+id/etNombre"
-                    android:hint="Nombre"
+                <Button
+                    android:id="@+id/btnActualizar"
+                    android:text=" Actualizar"
+                    android:drawableStart="@drawable/ic_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:paddingVertical="12dp" />
+                    android:backgroundTint="@color/naranjaOscuro"
+                    android:textColor="@color/blanco"
+                    android:layout_marginBottom="8dp"
+                    android:paddingHorizontal="12dp" />
 
-                <EditText
-                    android:id="@+id/etPrecio"
-                    android:hint="Precio"
-                    android:inputType="numberDecimal"
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:text=" Eliminar"
+                    android:drawableStart="@drawable/ic_delete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:paddingVertical="12dp" />
-
-                <EditText
-                    android:id="@+id/etStock"
-                    android:hint="Stock"
-                    android:inputType="number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:paddingVertical="12dp" />
-
-                <EditText
-                    android:id="@+id/etCategoria"
-                    android:hint="Categoría"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:paddingVertical="12dp" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_horizontal">
-
-                    <Button
-                        android:id="@+id/btnAgregar"
-                        android:text=" Agregar"
-                        android:drawableStart="@drawable/ic_add"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/naranjaPrimario"
-                        android:textColor="@color/blanco"
-                        android:layout_marginBottom="8dp"
-                        android:paddingHorizontal="12dp" />
-
-                    <Button
-                        android:id="@+id/btnActualizar"
-                        android:text=" Actualizar"
-                        android:drawableStart="@drawable/ic_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/naranjaOscuro"
-                        android:textColor="@color/blanco"
-                        android:layout_marginBottom="8dp"
-                        android:paddingHorizontal="12dp" />
-
-                    <Button
-                        android:id="@+id/btnEliminar"
-                        android:text=" Eliminar"
-                        android:drawableStart="@drawable/ic_delete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/holo_red_dark"
-                        android:textColor="@color/blanco"
-                        android:paddingHorizontal="12dp" />
-                </LinearLayout>
-
-                <ListView
-                    android:id="@+id/lvInventario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp" />
-
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:textColor="@color/blanco"
+                    android:paddingHorizontal="12dp" />
             </LinearLayout>
-        </FrameLayout>
+
+        </LinearLayout>
     </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInventario"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btnRegresar"
+        android:text="Regresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/naranjaOscuro"
+        android:textColor="@color/blanco" />
+
 </LinearLayout>

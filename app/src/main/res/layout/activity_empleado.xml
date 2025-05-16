@@ -24,5 +24,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btnGenerarReporte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generar reporte"
+        android:backgroundTint="@color/naranjaPrimario"
+        android:textColor="@color/blanco"
+        android:layout_marginTop="16dp"/>
+
 
 </LinearLayout>

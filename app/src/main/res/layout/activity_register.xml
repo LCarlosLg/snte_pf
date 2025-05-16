@@ -45,19 +45,18 @@
 
             <!-- Nombres -->
             <EditText
-                android:id="@+id/edNombres"
+                android:id="@+id/etNombres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombres"
                 android:inputType="textPersonName"
                 android:textColor="@color/brown"
                 android:minHeight="48dp"
-                android:layout_marginTop="0dp"
                 android:background="@android:drawable/edit_text" />
 
             <!-- Apellidos -->
             <EditText
-                android:id="@+id/edApellidos"
+                android:id="@+id/etApellidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellidos"
@@ -67,9 +66,21 @@
                 android:layout_marginTop="12dp"
                 android:background="@android:drawable/edit_text" />
 
+            <!-- Teléfono -->
+            <EditText
+                android:id="@+id/etTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teléfono"
+                android:inputType="phone"
+                android:textColor="@color/brown"
+                android:minHeight="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:drawable/edit_text" />
+
             <!-- Correo -->
             <EditText
-                android:id="@+id/edCorreo"
+                android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo"
@@ -79,7 +90,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@android:drawable/edit_text" />
 
-            <!-- Contraseña -->
+            <!-- Contraseña con botón mostrar -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +98,7 @@
                 android:layout_marginTop="12dp">
 
                 <EditText
-                    android:id="@+id/edContraseña"
+                    android:id="@+id/etContrasena"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -98,7 +109,7 @@
                     android:background="@android:drawable/edit_text" />
 
                 <ImageButton
-                    android:id="@+id/btnMostrarContraseña"
+                    android:id="@+id/btnMostrarContrasena"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/ic_menu_view"
@@ -109,50 +120,9 @@
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
 
-            <!-- Confirmar Contraseña -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/edConfirmarContrasena"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Confirmar Contraseña"
-                    android:inputType="textPassword"
-                    android:minHeight="48dp"
-                    android:background="@android:drawable/edit_text" />
-
-                <ImageButton
-                    android:id="@+id/btnMostrarConfirmarContraseña"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_menu_view"
-                    android:contentDescription="Mostrar Confirmar Contraseña"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:layout_gravity="center_vertical"
-                    android:padding="8dp"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-
-            <!-- Teléfono -->
-            <EditText
-                android:id="@+id/edTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Teléfono"
-                android:inputType="phone"
-                android:textColor="@color/brown"
-                android:minHeight="48dp"
-                android:layout_marginTop="12dp"
-                android:background="@android:drawable/edit_text" />
-
             <!-- Botón Registrarse -->
             <Button
-                android:id="@+id/btnRegistro"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registrarme"
@@ -173,6 +143,7 @@
                 android:minHeight="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
