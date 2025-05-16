@@ -45,16 +45,23 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ProductoAdapter.ViewHolder holder, int position) {
         ProductoModel producto = listaProductos.get(position);
+
         holder.tvNombre.setText(producto.getNombre());
         holder.tvCategoria.setText("Categoría: " + producto.getCategoria());
         holder.tvPrecio.setText("$ " + producto.getPrecio());
         holder.tvStock.setText("Stock: " + producto.getStock());
 
-        Picasso.get()
-                .load(producto.getImagen())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.ivProductoImagen);
+        String urlImagen = producto.getImagen();
+
+        if (urlImagen != null && !urlImagen.isEmpty()) {
+            Picasso.get()
+                    .load(urlImagen)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(holder.ivProductoImagen);
+        } else {
+            holder.ivProductoImagen.setImageResource(R.drawable.ic_launcher_foreground);
+        }
 
         holder.btnAgregar.setOnClickListener(v -> {
             if (listener != null) {
